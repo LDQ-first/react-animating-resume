@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from "react-dom"
+import Prism from 'prismjs'
 
 class StyleEditor extends Component {
       constructor (props) {
@@ -10,16 +11,13 @@ class StyleEditor extends Component {
           }
 
       }
-      addStyle() {
-
-      }
       componentDidUpdate() {
           ReactDOM.findDOMNode(this).scrollTop = 10000;
       }
       render() {
           return (
               <div>
-                  
+                  <div></div>
               </div>
           )
       }

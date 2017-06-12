@@ -389,8 +389,6 @@ progress::-webkit-progress-value  { background: #0064B4; }
             let len = currentStyle.length - prefixLength;
             currentStyle += style.substring(len, len + 1) || ' ';
             this.setState({currentStyle: currentStyle});
-            
-            this.refs.StyleEditor.addStyle();
             this.timer = setTimeout(showStyle, this.state.interval);
           } else {
             resolve();
