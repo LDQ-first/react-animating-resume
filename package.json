@@ -45,7 +45,7 @@
     "webpack-manifest-plugin": "1.1.0",
     "whatwg-fetch": "2.0.3"
   },
-  "homepage": "https://github.com/LDQ-first/react-animating-resume-1/build",
+  "homepage": "https://ldq-first.github.io/react-animating-resume-1/build",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
