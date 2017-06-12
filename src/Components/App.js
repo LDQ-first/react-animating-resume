@@ -1,33 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import StyleEditor from './StyleEditor.js'
 import ResumeEditor from './ResumeEditor.js'
-import '../static/js/iconfont.js'
+/*import '../static/js/iconfont.js'*/
 
 const AppDiv = styled.div`
-    text-align: center;
+    overflow: auto;
 `
+
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        timer =  '',
-        showControl = true,
-        interval = 50,
-        state = 'keepOn',
-        controlCode = false,
-        controlCodeText = '显示代码',
-        optimizeResume = false,
-        currentStyle = ``,
-        currentMarkdown = '',
-        enableHtml = false,
-    }
+        timer: '',
+        showControl: true,
+        interval: 50,
+        condition: 'keepOn',
+        controlCode: false,
+        controlCodeText: '显示代码',
+        optimizeResume: false,
+        currentStyle: '',
+        currentMarkdown: '',
+        enableHtml: false,
+    };
     /*this.asideArr = [
         { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
         { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
         { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
-    ]*/
+    ];*/
       this.fullStyle = [ `/*
 * Inspired by http://strml.net/
 * 大家好，我是刘德铨 
@@ -240,8 +241,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 .resumeEditor p{ padding: 0.2em 0; }
 .resumeEditor p:not(:nth-of-type(1)) { margin-top: 0.5em; }
         `
-
-],
+];
       this.fullMarkdown =`
 <span class="icon-border">
   <svg class="icon" id="icon" aria-hidden="true">
@@ -359,12 +359,63 @@ progress::-webkit-progress-value  { background: #0064B4; }
 > 希望借此机会为贵司贡献自身所长
 
 `
+  }
+  componentDidMount() {
+    this.makeResume();
+  }
+  async makeResume() {
+      await this.graduallyShowStyle(0)
+     /* await this.graduallyShowResume()
+      await this.graduallyShowStyle(1)
+      await this.showHtml()
+      await this.graduallyShowStyle(2)
+      await this.showControlCode()
+      await this.immediatelyCode()
+      await this.graduallyShowStyle(3)*/
+      /*this.optimizeResume = false;
+      this.state.condition = 'over';*/
+  }
+  graduallyShowStyle(n) {
+      return new Promise((resolve, reject) => {
+          const showStyle = ()=> {
+          const style = this.fullStyle[n];
+          if(!style) {
+            return;
+          }
+          const length = this.fullStyle.filter((ele, index) => index <= n).map( item => item.length ).reduce((acc, cur) => acc + cur, 0);
+          const prefixLength = length - style.length;
+          let currentStyle = this.state.currentStyle;
+          if(currentStyle.length < length) {
+            let len = currentStyle.length - prefixLength;
+            currentStyle += style.substring(len, len + 1) || ' ';
+            this.setState({currentStyle: currentStyle});
+            
+            this.refs.StyleEditor.addStyle();
+            this.timer = setTimeout(showStyle, this.state.interval);
+          } else {
+            resolve();
+          }
+        };
+         showStyle();
+      })
+  }
+  graduallyShowResume() {
+
+  }
+  showHtml() {
+
+  }
+  showControlCode() {
+
+  }
+  immediatelyCode() {
 
   }
   render() {
     return (
       <AppDiv>
-        
+        <StyleEditor ref="StyleEditor" code={this.state.currentStyle} />
+        <ResumeEditor ref="ResumeEditor"/>
       </AppDiv>
     );
   }
