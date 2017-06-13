@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import StyleEditor from './StyleEditor.js'
 import ResumeEditor from './ResumeEditor.js'
 import Control from './Control.js'
-import '../static/css/iconfont.css'
+/*import '../static/css/iconfont.css'*/
 /*import '../static/js/iconfont.js'*/
 import webpack from '../static/img/webpack.png'
 import weChat from '../static/img/weChat.png'
 import QQ from '../static/img/qq.jpg'
+import '../static/css/icomoon.css'
 
 
 const AppDiv = styled.div`
@@ -239,7 +240,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
   margin-right:0.4em;
   display: inline-block;vertical-align: middle
 }
-.resumeEditor .github { color: #000 }
+.resumeEditor .icon-github { color: #000 }
 .resumeEditor .icon { box-sizing: content-box; }
 .resumeEditor .icon-border {
    display: block; height: calc(1.5em + 7px); border-bottom: 2px solid #CCC;
@@ -254,65 +255,65 @@ progress::-webkit-progress-value  { background: #0064B4; }
 ];
       this.fullMarkdown =`
 <span class="icon-border">
-  <i class="icon iconfont icon-geren"></i>
+  <span class="icon icon-geren"></span>
 </span>
 刘德铨
 ---
 在校大三学生，正在学习前端, 对前端有强烈的兴趣
 
 <span class="icon-border">
-  <i class="icon iconfont icon-diannao"></i>
+  <span class="icon icon-skill"></span>
 </span>
 技能
 ---
-<pre><i class="icon iconfont icon-html"></i>HTML5       熟悉  <progress value="60" max="100"></progress>
-<i class="icon iconfont icon-socialcss3"></i>CSS3       熟悉  <progress value="60" max="100"></progress>
-<i class="icon iconfont icon-sass"></i>SCSS        熟悉  <progress value="60" max="100"></progress>
-<i class="icon iconfont icon-js-copy"></i>JavaScript  熟悉  <progress value="50" max="100"></progress>
-<i class="icon iconfont icon-jquery"></i>jQuery      熟悉  <progress value="70" max="100"></progress>
-<i class="icon iconfont icon-vuejs"></i>Vue         熟悉  <progress value="40" max="100"></progress>
+<pre><span class="icon icon-html5"></span>HTML5       熟悉  <progress value="60" max="100"></progress>
+<span class="icon icon-css3"></span>CSS3       熟悉  <progress value="60" max="100"></progress>
+<i class="icon icon-sass"></i>SCSS        熟悉  <progress value="60" max="100"></progress>
+<i class="icon icon-js"></i>JavaScript  熟悉  <progress value="50" max="100"></progress>
+<i class="icon icon-jquery"></i>jQuery      熟悉  <progress value="70" max="100"></progress>
+<i class="icon-vue"><span class="path1"></span><span class="path2"></span></i> Vue         熟悉  <progress value="40" max="100"></progress>
 <img src="./static/media/webpack.dcba9539.png" class="icon webpack">Webpack     了解  <progress value="35" max="100"></progress>  
 </pre>
 
 <span class="icon-border">
-  <i class="icon iconfont icon-mubiao"></i>
+  <i class="icon icon-mubiao"></i>
 </span>
 求职意向
 ---
 前端工程师
 
 <span class="icon-border">
-  <i class="icon iconfont icon-xiangmu"></i>
+  <i class="icon icon-project"></i>
 </span>
 项目
 ---
 1. [Vue版CNode](https://ldq-first.github.io/vue-CNode-1/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode-1" >
-  <i class="icon iconfont icon-github"></i>
+  <i class="icon icon-github"></i>
 </a>
 2. [Vue版在线简历编辑器](https://ldq-first.github.io/vue-cv-1/dist/#/)<a href="https://github.com/LDQ-first/vue-cv-1" >
-  <i class="icon iconfont icon-github"></i>
+  <i class="icon icon-github"></i>
 </a>
 3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume-1/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume-1" >
-  <i class="icon iconfont icon-github"></i>
+  <i class="icon icon-github"></i>
 </a>
 
 <span class="icon-border">
-  <i class="icon iconfont icon-lianxi"></i>
+  <i class="icon icon-contact"></i>
 </span>
 联系方式
 ---
-* <i class="icon iconfont icon-shouji"></i>手机：18826136763
-* <i class="icon iconfont icon-youxiang"></i>邮箱：2320975287@qq.com
-* <i class="icon iconfont icon-weixin-copy-copy"></i>微信：18826136763
+* <i class="icon icon-mobile"></i>手机：18826136763
+* <i class="icon icon-email"></i>邮箱：2320975287@qq.com
+* <span class="icon-weChat"><span class="path1"></span><span class="path2"></span></span> 微信：18826136763
 
 <span class="contact">![weChat](./static/media/weChat.2c1ab8cf.png)</span>
-*  <i class="icon iconfont icon-QQ1"></i>qq: 2320975287
+*  <i class="icon icon-QQ"></i>qq: 2320975287
 
 <span class="contact">![QQ](./static/media/qq.370b3bc6.jpg)</span>
 
 
 <span class="icon-border">
-  <i class="icon iconfont icon-jiaoyu"></i>
+  <i class="icon icon-jiaoyu"></i>
 </span>
 教育背景
 ---
@@ -320,7 +321,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 - 英语四级
 
 <span class="icon-border">
-  <i class="icon iconfont icon-ziwomiaoshu"></i>
+  <i class="icon icon-myself"></i>
 </span>
 自我评价和期望
 ---
