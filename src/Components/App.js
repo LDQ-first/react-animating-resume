@@ -328,11 +328,24 @@ progress::-webkit-progress-value  { background: #0064B4; }
 > 我希望能够加入一个以技术驱动为导向，技术氛围浓厚，有发展空间的互联网公司 :)  
 > 希望借此机会为贵司贡献自身所长
 
-`
+  `;
+  this.speedUp = this.speedUp.bind(this);
+  this.stop = this.stop.bind(this);
+  this.keepOn = this.keepOn.bind(this);
+  this.skip = this.skip.bind(this);
+  this.again = this.again.bind(this);
+  
+  }
+  speedUp() {
+
   }
   stop() {
-    this.state = 'stop';
+    this.condition = 'stop';
     clearTimeout(this.timer);
+  }
+  keepOn() {
+    this.condition = 'keepOn';
+    this.makeResume();
   }
   skip() {
 
@@ -342,6 +355,9 @@ progress::-webkit-progress-value  { background: #0064B4; }
   }
   immediatelyFillMarkdown() {
     
+  }
+  again() {
+
   }
   componentDidMount() {
     this.makeResume();
@@ -425,7 +441,12 @@ progress::-webkit-progress-value  { background: #0064B4; }
         <StyleEditor ref="StyleEditor" code={this.state.currentStyle} />
         <ResumeEditor ref="ResumeEditor" content={this.state.currentMarkdown} enableHtml={this.state.enableHtml}/>
         {this.state.showControl ? (
-          <Control onSkip={this.skip.bind(this)} onStop={this.stop.bind(this)}></Control>
+          <Control  
+          onSpeedUp = {this.speedUp}
+          onStop = {this.stop} 
+          onKeepOn = {this.keepOn} 
+          onSkip = {this.skip}
+          onAgain = {this.again}></Control>
         ) : (null) }
       </AppDiv>
     );
