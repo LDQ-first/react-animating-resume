@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import StyleEditor from './StyleEditor.js'
 import ResumeEditor from './ResumeEditor.js'
-import Prism from "prismjs"
+
 /*import '../static/js/iconfont.js'*/
 
 const AppDiv = styled.div`
@@ -13,18 +13,19 @@ const AppDiv = styled.div`
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-        timer: '',
-        showControl: true,
-        interval: 0,
-        condition: 'keepOn',
-        controlCode: false,
-        controlCodeText: '显示代码',
-        optimizeResume: false,
+    this.state = { 
         currentStyle: '',
-        currentMarkdown: '',
-        enableHtml: false,
+        currentMarkdown: '', 
+        enableHtml: false 
     };
+    this.timer = '';
+    this.showControl = true;
+    this.interval = 0;
+    this.condition = 'keepOn';
+    this.controlCode = false;
+    this.controlCodeText = '显示代码';
+    this.optimizeResume = false;
+    
     /*this.asideArr = [
         { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
         { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
@@ -390,7 +391,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
             let len = currentStyle.length - prefixLength;
             currentStyle += style.substring(len, len + 1) || ' ';
             this.setState({currentStyle: currentStyle});
-            this.timer = setTimeout(showStyle, this.state.interval);
+            this.timer = setTimeout(showStyle, this.interval);
           } else {
             resolve();
           }
@@ -399,10 +400,32 @@ progress::-webkit-progress-value  { background: #0064B4; }
       })
   }
   graduallyShowResume() {
-
+    return Promise.resolve({
+        then: (resolve, reject) => {
+          const length = this.fullMarkdown.length;
+          const showResume = () => {
+            let currentMarkdown = this.state.currentMarkdown;
+            if(currentMarkdown.length < length) {
+              currentMarkdown = this.fullMarkdown.substring(0, currentMarkdown.length + 1);
+              this.setState({currentMarkdown: currentMarkdown});
+             /* const lastLetter = currentMarkdown[currentMarkdown.length - 1];
+              const prevLetter = currentMarkdown[currentMarkdown.length - 2];*/
+              this.timer = setTimeout(showResume, this.interval)
+            } else {
+              resolve();
+            }
+          }
+          showResume()
+        }
+      })
   }
   showHtml() {
-
+    return Promise.resolve({
+      then: ( resolve, reject ) => {
+        this.setState({enableHtml: true});
+        resolve()
+      }
+    })
   }
   showControlCode() {
 
@@ -414,7 +437,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
     return (
       <AppDiv>
         <StyleEditor ref="StyleEditor" code={this.state.currentStyle} />
-        <ResumeEditor ref="ResumeEditor"/>
+        <ResumeEditor ref="ResumeEditor" content={this.state.currentMarkdown} enableHtml={this.state.enableHtml}/>
       </AppDiv>
     );
   }
