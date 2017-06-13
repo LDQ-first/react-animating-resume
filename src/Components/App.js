@@ -24,7 +24,6 @@ class App extends Component {
         showControl: true,
     };
     this.timer = '';
-   /* this.showControl = true;*/
     this.interval = 50;
     this.condition = 'keepOn';
     this.controlCode = false;

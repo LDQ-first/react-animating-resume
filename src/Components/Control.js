@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import '../static/css/icomoon.css'
 
 const ControlCode = styled.div`
     position: fixed;
@@ -21,11 +22,21 @@ export default class Control extends Component {
       render() {
           return (
               <ControlCode className="clearfix">
-                  <button className="btns" onClick={this.speedUp}>加速</button>
-                  <button className="btns" onClick={this.stop}>停止</button>
-                  <button className="btns" onClick={this.keepOn}>继续</button>
-                  <button className="btns" onClick={this.skip}>跳过</button>
-                 <button className="btns" onClick={this.again}>重来</button>
+                  <button className="btns" onClick={this.speedUp}>
+                    <span className="icon icon-speedUp"></span>加速
+                  </button>
+                  <button className="btns" onClick={this.stop}>
+                    <span className="icon icon-stop"></span>停止
+                  </button>
+                  <button className="btns" onClick={this.keepOn}>
+                    <span className="icon icon-jixv"></span>继续
+                  </button>
+                  <button className="btns" onClick={this.skip}>
+                    <span className="icon icon-skip"></span>跳过
+                  </button>
+                 <button className="btns" onClick={this.again}>
+                    <span className="icon icon-skip"></span>重来
+                 </button>
               </ControlCode>
           )
       }
