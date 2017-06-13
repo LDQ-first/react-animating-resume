@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from "react-dom"
-import {PrismCode} from "react-prism";
+import {PrismCode} from "react-prism"
 
 class StyleEditor extends Component {
       constructor (props) {

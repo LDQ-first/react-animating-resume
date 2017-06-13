@@ -366,13 +366,13 @@ progress::-webkit-progress-value  { background: #0064B4; }
   }
   async makeResume() {
       await this.graduallyShowStyle(0)
-     /* await this.graduallyShowResume()
+      await this.graduallyShowResume()
       await this.graduallyShowStyle(1)
       await this.showHtml()
       await this.graduallyShowStyle(2)
       await this.showControlCode()
       await this.immediatelyCode()
-      await this.graduallyShowStyle(3)*/
+      await this.graduallyShowStyle(3)
       /*this.optimizeResume = false;
       this.state.condition = 'over';*/
   }

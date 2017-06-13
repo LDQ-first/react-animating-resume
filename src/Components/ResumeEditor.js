@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import marked from "marked"
 
 class ResumeEditor extends Component {
     constructor (props) {
@@ -9,10 +9,14 @@ class ResumeEditor extends Component {
           }
 
       }
+      componentDidUpdate() {
+          ReactDOM.findDOMNode(this).scrollTop = 10000;
+      }
       render() {
           return (
-              <div>
-                  
+              <div className="resumeEditor">
+                  <div></div>
+                  <pre></pre>
               </div>
           )
       }
