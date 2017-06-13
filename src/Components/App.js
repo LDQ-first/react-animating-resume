@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import StyleEditor from './StyleEditor.js'
 import ResumeEditor from './ResumeEditor.js'
 import Control from './Control.js'
-/*import '../static/css/iconfont.css'*/
-/*import '../static/js/iconfont.js'*/
 import webpack from '../static/img/webpack.png'
 import weChat from '../static/img/weChat.png'
 import QQ from '../static/img/qq.jpg'
