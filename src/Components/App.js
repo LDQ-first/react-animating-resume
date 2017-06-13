@@ -26,7 +26,7 @@ class App extends Component {
     };
     this.timer = '';
    /* this.showControl = true;*/
-    this.interval = 0;
+    this.interval = 50;
     this.condition = 'keepOn';
     this.controlCode = false;
     this.controlCodeText = '显示代码';
@@ -333,34 +333,54 @@ progress::-webkit-progress-value  { background: #0064B4; }
   this.stop = this.stop.bind(this);
   this.keepOn = this.keepOn.bind(this);
   this.skip = this.skip.bind(this);
-  this.again = this.again.bind(this);
+ /* this.again = this.again.bind(this);*/
   
   }
   speedUp() {
-
+      this.condition = 'speedUp';
+      this.interval = 0;
   }
   stop() {
-    this.condition = 'stop';
-    clearTimeout(this.timer);
+      this.condition = 'stop';
+      clearTimeout(this.timer);
   }
   keepOn() {
-    this.condition = 'keepOn';
-    this.makeResume();
+      this.condition = 'keepOn';
+      this.makeResume();
   }
   skip() {
-
+      this.stop();
+      this.condition = 'over';
+      this.immediatelyFillCode();
+      this.setState({enableHtml: true});
+      this.setState({showControl: true});
+      this.immediatelyFillMarkdown();
   }
   immediatelyFillCode() {
-
+      this.setState({currentStyle: ''});
+      let currentStyle;
+      for(let style of this.fullStyle) {
+        currentStyle += style
+      } 
+       this.setState({currentStyle: currentStyle});
   }
   immediatelyFillMarkdown() {
-    
+      this.setState({currentMarkdown: this.fullMarkdown});
   }
-  again() {
-
-  }
+  /*again() {
+      console.log(this.timer);
+      clearTimeout(this.timer);
+      this.timer = '';
+      this.interval = 50;
+      this.setState({enableHtml: false});
+      this.setState({showControl: true});
+      this.condition = 'keepOn';
+      this.setState({currentStyle: ''});
+      this.setState({currentMarkdown: ''});
+      console.log(this.makeResume);
+  }*/
   componentDidMount() {
-    this.makeResume();
+      this.makeResume();
   }
   async makeResume() {
       await this.graduallyShowStyle(0)
@@ -446,7 +466,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
           onStop = {this.stop} 
           onKeepOn = {this.keepOn} 
           onSkip = {this.skip}
-          onAgain = {this.again}></Control>
+          /*onAgain = {this.again}*/></Control>
         ) : (null) }
       </AppDiv>
     );

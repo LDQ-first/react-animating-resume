@@ -16,16 +16,16 @@ export default class Control extends Component {
           this.stop = this.stop.bind(this);
           this.keepOn = this.keepOn.bind(this);
           this.skip = this.skip.bind(this);
-          this.again = this.again.bind(this);
+          /*this.again = this.again.bind(this);*/
       }
       render() {
           return (
               <ControlCode className="clearfix">
-                  <button onClick={this.speedUp}>加速</button>
-                  <button onClick={this.stop}>停止</button>
-                  <button onClick={this.keepOn}>继续</button>
-                  <button onClick={this.skip}>跳过</button>
-                  <button onClick={this.again}>重来</button>
+                  <button className="btns" onClick={this.speedUp}>加速</button>
+                  <button className="btns" onClick={this.stop}>停止</button>
+                  <button className="btns" onClick={this.keepOn}>继续</button>
+                  <button className="btns" onClick={this.skip}>跳过</button>
+                { /* <button className="btns" onClick={this.again}>重来</button>*/}
               </ControlCode>
           )
       }
@@ -41,8 +41,8 @@ export default class Control extends Component {
       skip() {
           this.props.onSkip();
       }
-      again() {
+      /*again() {
           this.props.onAgain();
-      }
+      }*/
       
 }
