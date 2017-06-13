@@ -8,7 +8,6 @@ class ResumeEditor extends Component {
           this.state = {
 
           }
-
       }
       resume() {
           return {

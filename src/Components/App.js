@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import StyleEditor from './StyleEditor.js'
 import ResumeEditor from './ResumeEditor.js'
-
+import Control from './Control.js'
+import '../static/css/iconfont.css'
 /*import '../static/js/iconfont.js'*/
+import webpack from '../static/img/webpack.png'
+import weChat from '../static/img/weChat.png'
+import QQ from '../static/img/qq.jpg'
+
 
 const AppDiv = styled.div`
     overflow: auto;
@@ -16,10 +21,11 @@ class App extends Component {
     this.state = { 
         currentStyle: '',
         currentMarkdown: '', 
-        enableHtml: false 
+        enableHtml: false,
+        showControl: true,
     };
     this.timer = '';
-    this.showControl = true;
+   /* this.showControl = true;*/
     this.interval = 0;
     this.condition = 'keepOn';
     this.controlCode = false;
@@ -64,59 +70,9 @@ html {
 .token.selector { color: #a6e22e; }
 .token.punctuation { color: yellow; }
 .token.property { color: #66d9ef; }
-pre { color: #999cfe};
+.styleEditor pre { color: #999cfe};
 .token.function { color: #2f9c0a; }
 
-/* 
-  动画速度太慢了， 来个加速按钮吧
-*/
-#speedUp { display: inline-block; }
-
-/* 
-  想停止动画， 来个停止按钮吧
-*/
-#stop { display: inline-block; }
-
-/* 
-  想继续动画， 来个继续按钮吧
-*/
-#keepOn { display: inline-block; }
-
-/* 
-  按钮样式太单调了，我们来装饰一下
-*/
-.btns {
-  background: #03A9F4;
-  color: #FFF;
-  border: none;  outline: none;
-  margin-right: 0.5em;
-  float: left;
-  font-size: .25rem;  color: #EEE;
-  width: 5em;  height: 3em;
-  text-align: center;
-  cursor: pointer;
-  border-radius: .3rem;
-  transition: all .3s ease-in-out;
-  box-shadow: 0 2px 10px rgba(0,0,0,.5);
-  position: relative;
-}
-.btns::before, .btns::after  {
-    content: "";
-    position: absolute;
-    top: 4px;  bottom: 4px;  left: 4px;  right: 4px;
-    border: 2px solid #eee; border-top: 0;  border-bottom: 0;
-    transition: all .4s ease-in-out
-} 
-
-.btns::before {
-   transform: scale(0, 1);
-   border: 2px solid #EEE;
-   border-left: 0;  border-right: 0;
-}
-
-.btns::after { transform: scale(1, 0); }
-.btns:hover::before  { transform: scale(1); }
-.btns:hover::after  { transform: scale(1); }
 
 
 /* 接下来我给自己准备一个编辑器 */
@@ -197,6 +153,58 @@ pre { color: #999cfe};
 /*
 好了，代码就展示到这里，接下来重点是优化简历了
 */
+/* 
+  动画速度太慢了， 来个加速按钮吧
+*/
+#speedUp { display: inline-block; }
+
+/* 
+  想停止动画， 来个停止按钮吧
+*/
+#stop { display: inline-block; }
+
+/* 
+  想继续动画， 来个继续按钮吧
+*/
+#keepOn { display: inline-block; }
+
+/* 
+  按钮样式太单调了，我们来装饰一下
+*/
+.btns {
+  background: #03A9F4;
+  color: #FFF;
+  border: none;  outline: none;
+  margin-right: 0.5em;
+  float: left;
+  font-size: .25rem;  color: #EEE;
+  width: 5em;  height: 3em;
+  text-align: center;
+  cursor: pointer;
+  border-radius: .3rem;
+  transition: all .3s ease-in-out;
+  box-shadow: 0 2px 10px rgba(0,0,0,.5);
+  position: relative;
+}
+.btns::before, .btns::after  {
+    content: "";
+    position: absolute;
+    top: 4px;  bottom: 4px;  left: 4px;  right: 4px;
+    border: 2px solid #eee; border-top: 0;  border-bottom: 0;
+    transition: all .4s ease-in-out
+} 
+
+.btns::before {
+   transform: scale(0, 1);
+   border: 2px solid #EEE;
+   border-left: 0;  border-right: 0;
+}
+
+.btns::after { transform: scale(1, 0); }
+.btns:hover::before  { transform: scale(1); }
+.btns:hover::after  { transform: scale(1); }
+
+
 /*隐藏代码*/
 .styleEditor { transform: translate(-50%, -200%); }
 .resumeEditor { position: absolute; left: 50%; top: 3.5em; transform: translateX(-50%); }
@@ -237,7 +245,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
    display: block; height: calc(1.5em + 7px); border-bottom: 2px solid #CCC;
 }
 .resumeEditor .icon-border .icon {
-   width: 5em; height: 1.5em;
+   width: 5em; height: 1.5em; color: #2AA8E9;
    border-bottom: 4px solid #2AA8E9;
 }
 .resumeEditor p{ padding: 0.2em 0; }
@@ -246,103 +254,65 @@ progress::-webkit-progress-value  { background: #0064B4; }
 ];
       this.fullMarkdown =`
 <span class="icon-border">
-  <svg class="icon" id="icon" aria-hidden="true">
-      <use xlink:href="#icon-geren"></use>
-  </svg>
+  <i class="icon iconfont icon-geren"></i>
 </span>
 刘德铨
 ---
 在校大三学生，正在学习前端, 对前端有强烈的兴趣
 
 <span class="icon-border">
-  <svg class="icon" id="icon" aria-hidden="true">
-      <use xlink:href="#icon-diannao"></use>
-  </svg>
+  <i class="iconfont icon-diannao"></i>
 </span>
 技能
 ---
-<pre><svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-html"></use>
-</svg>HTML5       熟悉  <progress value="60" max="100"></progress>
-<svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-socialcss3"></use>
-</svg>CSS3        熟悉  <progress value="60" max="100"></progress>
-<svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-sass"></use>
-</svg>SCSS        熟悉  <progress value="60" max="100"></progress>
-<svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-js-copy"></use>
-</svg>JavaScript  熟悉  <progress value="50" max="100"></progress>
-<svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-jquery"></use>
-</svg>jQuery      熟悉  <progress value="70" max="100"></progress>
-<svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-vuejs"></use>
-</svg>Vue         熟悉  <progress value="40" max="100"></progress>
-<img src="../static/img/webpack.png" class="webpack">Webpack     了解  <progress value="35" max="100"></progress>  
+<pre><i class="icon iconfont icon-html"></i>HTML5       熟悉  <progress value="60" max="100"></progress>
+<i class="icon iconfont icon-socialcss3"></i>CSS3       熟悉  <progress value="60" max="100"></progress>
+<i class="icon iconfont icon-sass"></i>SCSS        熟悉  <progress value="60" max="100"></progress>
+<i class="icon iconfont icon-js-copy"></i>JavaScript  熟悉  <progress value="50" max="100"></progress>
+<i class="icon iconfont icon-jquery"></i>jQuery      熟悉  <progress value="70" max="100"></progress>
+<i class="icon iconfont icon-vuejs"></i>Vue         熟悉  <progress value="40" max="100"></progress>
+<img src="./static/media/webpack.dcba9539.png" class="icon webpack">Webpack     了解  <progress value="35" max="100"></progress>  
 </pre>
 
 <span class="icon-border">
-  <svg class="icon" id="icon" aria-hidden="true">
-      <use xlink:href="#icon-mubiao"></use>
-  </svg>
+  <i class="icon iconfont icon-mubiao"></i>
 </span>
 求职意向
 ---
 前端工程师
 
 <span class="icon-border">
-  <svg class="icon" id="icon" aria-hidden="true">
-      <use xlink:href="#icon-xiangmu"></use>
-  </svg>
+  <i class="icon iconfont icon-xiangmu"></i>
 </span>
 项目
 ---
 1. [Vue版CNode](https://ldq-first.github.io/vue-CNode-1/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode-1" >
-  <svg class="icon github" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-github"></use>
-  </svg>
+  <i class="icon iconfont icon-github"></i>
 </a>
 2. [Vue版在线简历编辑器](https://ldq-first.github.io/vue-cv-1/dist/#/)<a href="https://github.com/LDQ-first/vue-cv-1" >
-  <svg class="icon github" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-github"></use>
-  </svg>
+  <i class="icon iconfont icon-github"></i>
 </a>
 3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume-1/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume-1" >
-  <svg class="icon github" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-github"></use>
-  </svg>
+  <i class="icon iconfont icon-github"></i>
 </a>
 
 <span class="icon-border">
-  <svg class="icon" id="icon" aria-hidden="true">
-      <use xlink:href="#icon-lianxi"></use>
-  </svg>
+  <i class="icon iconfont icon-lianxi"></i>
 </span>
 联系方式
 ---
-* <svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-shouji"></use>
-</svg>手机：18826136763
-* <svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-youxiang"></use>
-</svg>邮箱：2320975287@qq.com
-* <svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-weixin-copy-copy"></use>
-</svg>微信：18826136763
+* <i class="icon iconfont icon-shouji"></i>手机：18826136763
+* <i class="icon iconfont icon-youxiang"></i>邮箱：2320975287@qq.com
+* <i class="icon iconfont icon-weixin-copy-copy"></i>微信：18826136763
 
-<span class="contact">![weChat](./static/img/weChat.png)</span>
-*  <svg class="icon" id="icon" aria-hidden="true">
-    <use xlink:href="#icon-QQ1"></use>
-</svg>qq: 2320975287
+<span class="contact">![weChat](./static/media/weChat.2c1ab8cf.png)</span>
+*  <i class="icon iconfont icon-QQ1"></i>qq: 2320975287
 
-<span class="contact">![QQ](./static/img/qq.jpg)</span>
+<span class="contact">![QQ](./static/media/qq.370b3bc6.jpg)</span>
 
 
 <span class="icon-border">
-  <svg class="icon" id="icon" aria-hidden="true">
-      <use xlink:href="#icon-jiaoyu"></use>
-  </svg>
+  <i class="icon iconfont icon-jiaoyu"></i>
 </span>
 教育背景
 ---
@@ -350,9 +320,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 - 英语四级
 
 <span class="icon-border">
-  <svg class="icon" id="icon" aria-hidden="true">
-      <use xlink:href="#icon-ziwomiaoshu"></use>
-  </svg>
+  <i class="icon iconfont icon-ziwomiaoshu"></i>
 </span>
 自我评价和期望
 ---
@@ -362,16 +330,29 @@ progress::-webkit-progress-value  { background: #0064B4; }
 
 `
   }
+  stop() {
+    this.state = 'stop';
+    clearTimeout(this.timer);
+  }
+  skip() {
+
+  }
+  immediatelyFillCode() {
+
+  }
+  immediatelyFillMarkdown() {
+    
+  }
   componentDidMount() {
     this.makeResume();
   }
   async makeResume() {
       await this.graduallyShowStyle(0)
+      await this.showControlCode()
       await this.graduallyShowResume()
       await this.graduallyShowStyle(1)
       await this.showHtml()
       await this.graduallyShowStyle(2)
-      await this.showControlCode()
       await this.immediatelyCode()
       await this.graduallyShowStyle(3)
       /*this.optimizeResume = false;
@@ -419,6 +400,14 @@ progress::-webkit-progress-value  { background: #0064B4; }
         }
       })
   }
+  showControlCode() {
+    return Promise.resolve({
+      then: ( resolve, reject ) => {
+        this.setState({showControl: true});
+        resolve()
+      }
+    })
+  }
   showHtml() {
     return Promise.resolve({
       then: ( resolve, reject ) => {
@@ -426,9 +415,6 @@ progress::-webkit-progress-value  { background: #0064B4; }
         resolve()
       }
     })
-  }
-  showControlCode() {
-
   }
   immediatelyCode() {
 
@@ -438,6 +424,9 @@ progress::-webkit-progress-value  { background: #0064B4; }
       <AppDiv>
         <StyleEditor ref="StyleEditor" code={this.state.currentStyle} />
         <ResumeEditor ref="ResumeEditor" content={this.state.currentMarkdown} enableHtml={this.state.enableHtml}/>
+        {this.state.showControl ? (
+          <Control onSkip={this.skip.bind(this)} onStop={this.stop.bind(this)}></Control>
+        ) : (null) }
       </AppDiv>
     );
   }
