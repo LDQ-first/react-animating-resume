@@ -2,6 +2,16 @@ import React, {Component} from 'react'
 import ReactDOM from "react-dom"
 import Prism from "prismjs"
 import {PrismCode} from "react-prism"
+import styled from 'styled-components'
+
+const StyleEditors = styled.div`
+    &.showCode {
+         transform: translate(-50%, 0);
+        opacity: 1;
+    }
+`
+
+
 
 class StyleEditor extends Component {
       constructor (props) {
@@ -10,15 +20,20 @@ class StyleEditor extends Component {
               
           }
       }
+      controlCode() {
+         /* this.refs.container.classList.toggle('showCode');*/
+         console.log(this._styleEditor);
+         this._styleEditor.classList.toggle('showCode');
+      }
       componentDidUpdate() {
           ReactDOM.findDOMNode(this).scrollTop = 10000;
       }
       render() {
           return (
-              <div className="styleEditor">
+              <StyleEditors className="styleEditor" ref={ styleEditor => this._styleEditor = styleEditor }>
                   <style>{this.props.code}</style>
                   <pre><PrismCode className="language-css">{this.props.code}</PrismCode></pre>
-              </div>
+              </StyleEditors>
           )
       }
 }

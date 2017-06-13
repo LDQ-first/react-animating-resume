@@ -12,7 +12,19 @@ import '../static/css/icomoon.css'
 const AppDiv = styled.div`
     overflow: auto;
 `
+const OptimizeResume = styled.p`
+    width: 100vw;
+    margin: 10px 0;
+    text-align: center;
+    color: #FFF;
+`
 
+const ControlCode = styled.button`
+    margin: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+`
 
 class App extends Component {
   constructor(props) {
@@ -22,14 +34,13 @@ class App extends Component {
         currentMarkdown: '', 
         enableHtml: false,
         showControl: true,
+        condition: 'keepOn',
+        optimizeResume : false,
+        controlCode: false,
+        controlCodeText: '显示代码'
     };
     this.timer = '';
-    this.interval = 50;
-    this.condition = 'keepOn';
-    this.controlCode = false;
-    this.controlCodeText = '显示代码';
-    this.optimizeResume = false;
-    
+    this.interval = 10;
     /*this.asideArr = [
         { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
         { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
@@ -71,7 +82,56 @@ html {
 .styleEditor pre { color: #999cfe};
 .token.function { color: #2f9c0a; }
 
+/* 
+  动画速度太慢了， 来个加速按钮吧
+*/
+#speedUp { display: inline-block; }
 
+/* 
+  想停止动画， 来个停止按钮吧
+*/
+#stop { display: inline-block; }
+
+/* 
+  想继续动画， 来个继续按钮吧
+*/
+#keepOn { display: inline-block; }
+
+/* 
+  按钮样式太单调了，我们来装饰一下
+*/
+.btns {
+  background: #03A9F4;
+  color: #FFF;
+  border: none;  outline: none;
+  margin-right: 0.5em;
+  float: left;
+  font-size: .25rem;  color: #EEE;
+  width: 5em;  height: 3em;
+  text-align: center;
+  cursor: pointer;
+  border-radius: .3rem;
+  transition: all .3s ease-in-out;
+  box-shadow: 0 2px 10px rgba(0,0,0,.5);
+  position: relative;
+}
+.btns::before, .btns::after  {
+    content: "";
+    position: absolute;
+    top: 4px;  bottom: 4px;  left: 4px;  right: 4px;
+    border: 2px solid #eee; border-top: 0;  border-bottom: 0;
+    transition: all .4s ease-in-out
+} 
+
+.btns::before {
+   transform: scale(0, 1);
+   border: 2px solid #EEE;
+   border-left: 0;  border-right: 0;
+}
+
+.btns::after { transform: scale(1, 0); }
+.btns:hover::before  { transform: scale(1); }
+.btns:hover::after  { transform: scale(1); }
 
 /* 接下来我给自己准备一个编辑器 */
 .resumeEditor {
@@ -84,6 +144,8 @@ html {
   overflow: auto;
 }
 #icon { font-size: 20px; }
+
+
 
 /* 好了，我开始写简历了 */
         `,
@@ -151,56 +213,7 @@ html {
 /*
 好了，代码就展示到这里，接下来重点是优化简历了
 */
-/* 
-  动画速度太慢了， 来个加速按钮吧
-*/
-#speedUp { display: inline-block; }
 
-/* 
-  想停止动画， 来个停止按钮吧
-*/
-#stop { display: inline-block; }
-
-/* 
-  想继续动画， 来个继续按钮吧
-*/
-#keepOn { display: inline-block; }
-
-/* 
-  按钮样式太单调了，我们来装饰一下
-*/
-.btns {
-  background: #03A9F4;
-  color: #FFF;
-  border: none;  outline: none;
-  margin-right: 0.5em;
-  float: left;
-  font-size: .25rem;  color: #EEE;
-  width: 5em;  height: 3em;
-  text-align: center;
-  cursor: pointer;
-  border-radius: .3rem;
-  transition: all .3s ease-in-out;
-  box-shadow: 0 2px 10px rgba(0,0,0,.5);
-  position: relative;
-}
-.btns::before, .btns::after  {
-    content: "";
-    position: absolute;
-    top: 4px;  bottom: 4px;  left: 4px;  right: 4px;
-    border: 2px solid #eee; border-top: 0;  border-bottom: 0;
-    transition: all .4s ease-in-out
-} 
-
-.btns::before {
-   transform: scale(0, 1);
-   border: 2px solid #EEE;
-   border-left: 0;  border-right: 0;
-}
-
-.btns::after { transform: scale(1, 0); }
-.btns:hover::before  { transform: scale(1); }
-.btns:hover::after  { transform: scale(1); }
 
 
 /*隐藏代码*/
@@ -327,31 +340,36 @@ progress::-webkit-progress-value  { background: #0064B4; }
 > 希望借此机会为贵司贡献自身所长
 
   `;
+  this.controlCodeEve = this.controlCodeEve.bind(this);
+
   this.speedUp = this.speedUp.bind(this);
   this.stop = this.stop.bind(this);
   this.keepOn = this.keepOn.bind(this);
   this.skip = this.skip.bind(this);
   this.again = this.again.bind(this);
+
   
   }
   speedUp() {
-      this.condition = 'speedUp';
+      this.setState({condition: 'speedUp'});
       this.interval = 0;
   }
   stop() {
-      this.condition = 'stop';
+      this.setState({condition: 'stop'});
       clearTimeout(this.timer);
   }
   keepOn() {
-      this.condition = 'keepOn';
+      this.setState({condition: 'keepOn'});
       this.makeResume();
   }
   skip() {
       this.stop();
-      this.condition = 'over';
+      this.setState({condition: 'over'})
       this.immediatelyFillCode();
       this.setState({enableHtml: true});
       this.setState({showControl: true});
+      this.setState({controlCode: true});
+      this.setState({optimizeResume: false});
       this.immediatelyFillMarkdown();
   }
   immediatelyFillCode() {
@@ -373,15 +391,15 @@ progress::-webkit-progress-value  { background: #0064B4; }
   }
   async makeResume() {
       await this.graduallyShowStyle(0)
-      await this.showControlCode()
       await this.graduallyShowResume()
       await this.graduallyShowStyle(1)
       await this.showHtml()
       await this.graduallyShowStyle(2)
+      await this.showControlCode()
       await this.immediatelyCode()
       await this.graduallyShowStyle(3)
-      /*this.optimizeResume = false;
-      this.state.condition = 'over';*/
+      this.setState({optimizeResume: false});
+      this.setState({condition: 'over'});
   }
   graduallyShowStyle(n) {
       return new Promise((resolve, reject) => {
@@ -428,7 +446,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
   showControlCode() {
     return Promise.resolve({
       then: ( resolve, reject ) => {
-        this.setState({showControl: true});
+        this.setState({controlCode: true});
         resolve()
       }
     })
@@ -442,21 +460,36 @@ progress::-webkit-progress-value  { background: #0064B4; }
     })
   }
   immediatelyCode() {
-
+    return Promise.resolve({
+      then: ( resolve, reject ) => {
+        this.setState({optimizeResume: true});
+        resolve()
+      }
+    })
+  }
+  controlCodeEve() {
+    this._ControlCode.controlCode();
+    const controlCodeText = this.state.controlCodeText  === '显示代码' ? '隐藏代码' : '显示代码';
+    this.setState({ controlCodeText: controlCodeText});
   }
   render() {
     return (
       <AppDiv>
+        { this.state.optimizeResume ? <OptimizeResume>简历快速优化中……</OptimizeResume> : null}
+        { this.state.controlCode ? <ControlCode
+          onClick={this.controlCodeEve} className="btns" 
+          ref={ControlCode => this._ControlCode = ControlCode}>{this.state.controlCodeText}</ControlCode> : null}
         <StyleEditor ref="StyleEditor" code={this.state.currentStyle} />
         <ResumeEditor ref="ResumeEditor" content={this.state.currentMarkdown} enableHtml={this.state.enableHtml}/>
-        {this.state.showControl ? (
+        {this.state.showControl ? 
           <Control  
           onSpeedUp = {this.speedUp}
           onStop = {this.stop} 
           onKeepOn = {this.keepOn} 
           onSkip = {this.skip}
-          onAgain = {this.again}></Control>
-        ) : (null) }
+          onAgain = {this.again} 
+          condition = {this.state.codition} ></Control>
+         : null }
       </AppDiv>
     );
   }
