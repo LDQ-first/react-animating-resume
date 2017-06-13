@@ -3,10 +3,12 @@ import ReactDOM from "react-dom"
 import Prism from "prismjs"
 import {PrismCode} from "react-prism"
 import styled from 'styled-components'
+import classnames from 'classnames'
 
 const StyleEditors = styled.div`
     &.showCode {
-         transform: translate(-50%, 0);
+        transition: all 0.5s ease-in-out;
+        transform: translate(-50%, 0);
         opacity: 1;
     }
 `
@@ -17,20 +19,19 @@ class StyleEditor extends Component {
       constructor (props) {
           super(props)
           this.state = {
-              
+              isShowCode: false
           }
       }
       controlCode() {
-         /* this.refs.container.classList.toggle('showCode');*/
-         console.log(this._styleEditor);
-         this._styleEditor.classList.toggle('showCode');
+         const isShowCode = this.state.isShowCode ? false : true;
+         this.setState({isShowCode: isShowCode})
       }
       componentDidUpdate() {
           ReactDOM.findDOMNode(this).scrollTop = 10000;
       }
       render() {
           return (
-              <StyleEditors className="styleEditor" ref={ styleEditor => this._styleEditor = styleEditor }>
+              <StyleEditors className={classnames('styleEditor ',{ showCode: this.state.isShowCode})} ref={ styleEditors => this._styleEditors = styleEditors }>
                   <style>{this.props.code}</style>
                   <pre><PrismCode className="language-css">{this.props.code}</PrismCode></pre>
               </StyleEditors>

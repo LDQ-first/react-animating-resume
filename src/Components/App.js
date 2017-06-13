@@ -30,8 +30,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = { 
-        currentStyle: '',
-        currentMarkdown: '', 
+        currentStyle: ' ',
+        currentMarkdown: ' ', 
         enableHtml: false,
         showControl: true,
         condition: 'keepOn',
@@ -46,7 +46,7 @@ class App extends Component {
         { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
         { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
     ];*/
-      this.fullStyle = [ `/*
+      this.fullStyle = [ ` /*
 * Inspired by http://strml.net/
 * 大家好，我是刘德铨 
 * 这是我的一份动态简历！
@@ -374,7 +374,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
   }
   immediatelyFillCode() {
       this.setState({currentStyle: ''});
-      let currentStyle;
+      let currentStyle = '';
       for(let style of this.fullStyle) {
         currentStyle += style
       } 
@@ -468,7 +468,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
     })
   }
   controlCodeEve() {
-    this._ControlCode.controlCode();
+    this._StyleEditor.controlCode();
     const controlCodeText = this.state.controlCodeText  === '显示代码' ? '隐藏代码' : '显示代码';
     this.setState({ controlCodeText: controlCodeText});
   }
@@ -479,8 +479,8 @@ progress::-webkit-progress-value  { background: #0064B4; }
         { this.state.controlCode ? <ControlCode
           onClick={this.controlCodeEve} className="btns" 
           ref={ControlCode => this._ControlCode = ControlCode}>{this.state.controlCodeText}</ControlCode> : null}
-        <StyleEditor ref="StyleEditor" code={this.state.currentStyle} />
-        <ResumeEditor ref="ResumeEditor" content={this.state.currentMarkdown} enableHtml={this.state.enableHtml}/>
+        <StyleEditor ref={ StyleEditor => this._StyleEditor = StyleEditor } code={this.state.currentStyle} />
+        <ResumeEditor ref={ ResumeEditor => this._ResumeEditor = ResumeEditor} content={this.state.currentMarkdown} enableHtml={this.state.enableHtml}/>
         {this.state.showControl ? 
           <Control  
           onSpeedUp = {this.speedUp}
