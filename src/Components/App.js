@@ -261,7 +261,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 在校大三学生，正在学习前端, 对前端有强烈的兴趣
 
 <span class="icon-border">
-  <i class="iconfont icon-diannao"></i>
+  <i class="icon iconfont icon-diannao"></i>
 </span>
 技能
 ---
@@ -333,7 +333,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
   this.stop = this.stop.bind(this);
   this.keepOn = this.keepOn.bind(this);
   this.skip = this.skip.bind(this);
- /* this.again = this.again.bind(this);*/
+  this.again = this.again.bind(this);
   
   }
   speedUp() {
@@ -367,18 +367,9 @@ progress::-webkit-progress-value  { background: #0064B4; }
   immediatelyFillMarkdown() {
       this.setState({currentMarkdown: this.fullMarkdown});
   }
-  /*again() {
-      console.log(this.timer);
-      clearTimeout(this.timer);
-      this.timer = '';
-      this.interval = 50;
-      this.setState({enableHtml: false});
-      this.setState({showControl: true});
-      this.condition = 'keepOn';
-      this.setState({currentStyle: ''});
-      this.setState({currentMarkdown: ''});
-      console.log(this.makeResume);
-  }*/
+  again() {
+      window.location.reload();
+  }
   componentDidMount() {
       this.makeResume();
   }
@@ -466,7 +457,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
           onStop = {this.stop} 
           onKeepOn = {this.keepOn} 
           onSkip = {this.skip}
-          /*onAgain = {this.again}*/></Control>
+          onAgain = {this.again}></Control>
         ) : (null) }
       </AppDiv>
     );
