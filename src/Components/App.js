@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import StyleEditor from './StyleEditor.js'
 import ResumeEditor from './ResumeEditor.js'
+import Prism from "prismjs"
 /*import '../static/js/iconfont.js'*/
 
 const AppDiv = styled.div`
@@ -15,7 +16,7 @@ class App extends Component {
     this.state = {
         timer: '',
         showControl: true,
-        interval: 50,
+        interval: 0,
         condition: 'keepOn',
         controlCode: false,
         controlCodeText: '显示代码',
