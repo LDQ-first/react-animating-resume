@@ -184,7 +184,7 @@ html {
         `
 /* 再对 HTML 加点样式 */
 .resumeEditor h2{
-  padding: 0.1em 0.5em;
+  padding: 0.3em 0.5em;
   border-left: 4px solid #FF7203;
   background: #B79DFE;
   color: #222;
@@ -192,12 +192,10 @@ html {
 }
 .resumeEditor pre {
   color: #222;
-  line-height: 1.4em;
   padding: 0.2em 1em;
 }
 .resumeEditor  p {
   font-size: 18px;
-  line-height: 1.7em;
   padding: 0.2em 1em;
 }
 .resumeEditor img { width: 170px; }
@@ -208,7 +206,6 @@ html {
    vertical-align: -0.15em;
    fill: currentColor;
 }
-
 .resumeEditor a {
   display: inline-block;
   margin: 0 5px;
@@ -290,24 +287,23 @@ progress::-webkit-progress-value  { background: #0064B4; }
    text-align: center;
 }
 .resumeEditor p{ padding: 0.2em 0; }
-.resumeEditor p:not(:nth-of-type(1)) { margin-top: 0.5em; }
+
         `
 ];
       this.fullMarkdown =`
 <i class="icon-border"><i class="icon icon-geren" id="icon"></i></i>
-刘德铨
----
+## 刘德铨
 在校大三学生，正在学习前端, 对前端有强烈的兴趣  
 
 <i class="icon-border"><i class="icon icon-skill" id="icon"></i></i>
 技能
 ---
-<pre><i class="icon icon-html5"></i>HTML5       熟悉  <progress value="60" max="100"></progress>
-<i class="icon icon-css3"></i>CSS3        熟悉  <progress value="60" max="100"></progress>
-<i class="icon icon-sass"></i>SCSS        熟悉  <progress value="60" max="100"></progress>
-<i class="icon icon-js"></i>JavaScript  熟悉  <progress value="50" max="100"></progress>
-<i class="icon icon-jquery"></i>jQuery      熟悉  <progress value="70" max="100"></progress>
-<i class="icon icon-vue"><i class="path1"></i><i class="path2"></i></i> Vue        熟悉  <progress value="40" max="100"></progress>
+<pre class="skillPre"><i class="icon icon-html5"></i>HTML5         熟悉  <progress value="60" max="100"></progress>
+<i class="icon icon-css3"></i>CSS3           熟悉  <progress value="60" max="100"></progress>
+<i class="icon icon-sass"></i>SCSS           熟悉  <progress value="60" max="100"></progress>
+<i class="icon icon-js"></i>JavaScript    熟悉  <progress value="50" max="100"></progress>
+<i class="icon icon-jquery"></i>jQuery          熟悉  <progress value="70" max="100"></progress>
+<i class="icon icon-vue"><i class="path1"></i><i class="path2"></i></i> Vue             熟悉  <progress value="40" max="100"></progress>
 <i class="icon icon-webpack"><i class="path1"></i><i class="path2"></i></i>Webpack     了解  <progress value="35" max="100"></progress>  
 </pre>
 
