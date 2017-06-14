@@ -325,7 +325,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume-1/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume-1" class="github">
   <i class="icon icon-github"></i>
 </a>
-4. [React版动态简历](https://ldq-first.github.io/react-animating-resume-1/build)<a href="https://github.com/LDQ-first/react-animating-resume-1" class="github">
+4. [React版动态简历](https://ldq-first.github.io/react-animating-resume-1/build/)<a href="https://github.com/LDQ-first/react-animating-resume-1" class="github">
   <i class="icon icon-github"></i>
 </a>
 
