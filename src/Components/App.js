@@ -491,10 +491,10 @@ progress::-webkit-progress-value  { background: #0064B4; }
   pureResume(tag) {
        if(tag === 'PDF下载') {
         this.skip();
-        /*this.setState({showControl: true});
-        this.setState({controlCode: true});
+        this.setState({showControl: false});
+        this.setState({controlCode: false});
         this.setState({condition: 'pure'})
-        this._ResumeEditor.pureResume();*/
+        this._ResumeEditor.pureResume();
       } 
   }
    
