@@ -27,12 +27,16 @@ class StyleEditor extends Component {
          this.setState({isShowCode: isShowCode})
       }
       componentDidUpdate() {
-         /* ReactDOM.findDOMNode(this).scrollTop = 10000;*/
-          /*StyleEditors.scrollTop = 10000;*/
+         const len = this.props.code.length;
+         const lastChar = this.props.code.substring(len - 2, len -1);
+         if(lastChar === '\n') {
+              ReactDOM.findDOMNode(this).scrollTop = 10000;
+         }
       }
       render() {
           return (
-              <StyleEditors className={classnames('styleEditor ',{ showCode: this.state.isShowCode})} ref={ styleEditors => this._styleEditors = styleEditors }>
+              <StyleEditors className={classnames('styleEditor ',{ showCode: this.state.isShowCode})} 
+              ref={ styleEditors => this._styleEditors = styleEditors }>
                   <style>{this.props.code}</style>
                   <pre><PrismCode className="language-css">{this.props.code}</PrismCode></pre>
               </StyleEditors>

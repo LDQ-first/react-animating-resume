@@ -18,8 +18,11 @@ class ResumeEditor extends Component {
 
       }
       componentDidUpdate() {
-          /*ReactDOM.findDOMNode(this).scrollTop = 10000;*/
-         /* this._resumeEditor.scrollTop = 10000;*/
+         const len = this.resume().__html.length;
+         const lastChar = this.resume().__html.substring(len-2, len-1);
+         if(lastChar === '\n') {
+             ReactDOM.findDOMNode(this).scrollTop = 10000;
+         }
       }
       render() {
           return (

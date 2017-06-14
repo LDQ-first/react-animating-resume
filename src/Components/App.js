@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import StyleEditor from './StyleEditor.js'
 import ResumeEditor from './ResumeEditor.js'
 import Control from './Control.js'
-import webpack from '../static/img/webpack.png'
-import weChat from '../static/img/weChat.png'
-import QQ from '../static/img/qq.jpg'
 import '../static/css/icomoon.css'
 
 
@@ -21,7 +18,7 @@ const OptimizeResume = styled.p`
 
 const ControlCode = styled.button`
     margin: 10px;
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
 `
@@ -30,14 +27,16 @@ const AsideOpt = styled.aside`
     right: 0;
     top: 30%;
     z-index: 10;
-    ul li {
-      list-style: none;
-      background: #00A68F;
-      margin-bottom: 10px;
-      border-radius: 10px 0 0 10px;
-      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
-                  0 3px 1px -2px rgba(0,0,0,.2),
-                  0 1px 5px 0 rgba(0,0,0,.12);
+    ul {
+        li {
+        list-style: none;
+        background: #00A68F;
+        margin-bottom: 10px;
+        border-radius: 10px 0 0 10px;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
+                    0 3px 1px -2px rgba(0,0,0,.2),
+                    0 1px 5px 0 rgba(0,0,0,.12);
+      }
     }
     a {
       display: inline-block;
@@ -61,17 +60,12 @@ class App extends Component {
         optimizeResume : false,
         controlCode: false,
         controlCodeText: '显示代码',
-       /* asideArr : [
-          { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
-          { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
-          { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
-       ],*/
     };
      this.asideArr = [
           { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
-          { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
+          { tag: '源码', link: 'https://github.com/LDQ-first/react-animating-resume-1'},
           { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
-       ],
+       ];
     this.timer = '';
     this.interval = 10;
       this.fullStyle = [ ` /*
@@ -213,8 +207,8 @@ html {
    margin-right: 0.4em;
    vertical-align: -0.15em;
    fill: currentColor;
-   overflow: hidden;
 }
+
 .resumeEditor a {
   display: inline-block;
   margin: 0 5px;
@@ -284,11 +278,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 @media screen and (max-width: 450px) {
   progress { display: block; }
 }
-.resumeEditor img.webpack { 
-  width: 20px; height: 20px;
-  margin-right:0.4em;
-  display: inline-block;vertical-align: middle
-}
+
 .resumeEditor .icon-github { color: #000 }
 .resumeEditor .icon { box-sizing: content-box; }
 .resumeEditor .icon-border {
@@ -318,7 +308,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 <i class="icon icon-js"></i>JavaScript  熟悉  <progress value="50" max="100"></progress>
 <i class="icon icon-jquery"></i>jQuery      熟悉  <progress value="70" max="100"></progress>
 <i class="icon icon-vue"><i class="path1"></i><i class="path2"></i></i> Vue        熟悉  <progress value="40" max="100"></progress>
-<img src="./static/media/webpack.dcba9539.png" class="icon webpack">Webpack     了解  <progress value="35" max="100"></progress>  
+<i class="icon icon-webpack"><i class="path1"></i><i class="path2"></i></i>Webpack     了解  <progress value="35" max="100"></progress>  
 </pre>
 
 <i class="icon-border"><i class="icon icon-mubiao" id="icon"></i></i>
@@ -444,6 +434,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
           if(currentStyle.length < length) {
             let len = currentStyle.length - prefixLength;
             currentStyle += style.substring(len, len + 1) || ' ';
+
             this.setState({currentStyle: currentStyle});
             this.timer = setTimeout(showStyle, this.interval);
           } else {
@@ -462,8 +453,6 @@ progress::-webkit-progress-value  { background: #0064B4; }
             if(currentMarkdown.length < length) {
               currentMarkdown = this.fullMarkdown.substring(0, currentMarkdown.length + 1);
               this.setState({currentMarkdown: currentMarkdown});
-             /* const lastLetter = currentMarkdown[currentMarkdown.length - 1];
-              const prevLetter = currentMarkdown[currentMarkdown.length - 2];*/
               this.timer = setTimeout(showResume, this.interval)
             } else {
               resolve();
@@ -492,6 +481,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
   immediatelyCode() {
     return Promise.resolve({
       then: ( resolve, reject ) => {
+        this.speedUp();
         this.setState({optimizeResume: true});
         resolve()
       }
@@ -516,7 +506,8 @@ progress::-webkit-progress-value  { background: #0064B4; }
     let asideItem = this.asideArr.filter((item) => item).map( (item, index) => {
       return (
         <li key={index}>
-          <a href={item.link} target="_blank" onClick={() => {this.pureResume(item.tag)} }>{item.tag}</a>
+          <a href={item.link} target="_blank" rel="noopener noreferrer" 
+          onClick={() => {this.pureResume(item.tag)} }>{item.tag}</a>
         </li>
       )
     })
@@ -533,15 +524,18 @@ progress::-webkit-progress-value  { background: #0064B4; }
           </ul>
         </AsideOpt> : null}
         <StyleEditor ref={ StyleEditor => this._StyleEditor = StyleEditor } code={this.state.currentStyle} />
-        <ResumeEditor ref={ ResumeEditor => this._ResumeEditor = ResumeEditor} content={this.state.currentMarkdown} enableHtml={this.state.enableHtml}/>
+        <ResumeEditor ref={ ResumeEditor => this._ResumeEditor = ResumeEditor} content={this.state.currentMarkdown} 
+        enableHtml={this.state.enableHtml}/>
         {this.state.showControl ? 
           <Control  
+          condition = {this.state.condition}
+          interval = {this.interval}
           onSpeedUp = {this.speedUp}
           onStop = {this.stop} 
           onKeepOn = {this.keepOn} 
           onSkip = {this.skip}
           onAgain = {this.again} 
-          condition = {this.state.codition} ></Control>
+           ></Control>
          : null }
       </AppDiv>
     );

@@ -23,7 +23,7 @@ export default class Control extends Component {
       constructor(props) {
           super(props)
           this.state = {
-              iskeepOn: true,
+             
           }
           this.speedUp = this.speedUp.bind(this);
           this.stop = this.stop.bind(this);
@@ -34,22 +34,24 @@ export default class Control extends Component {
       render() {
           return (
               <ControlCode className="clearfix">
-                  <SpeedUp className="btns speedUp" id="speedUp" onClick={this.speedUp} >
+                  {this.props.interval !== 0 && this.props.condition !== 'over' ? <SpeedUp className="btns speedUp" id="speedUp" onClick={this.speedUp} >
                     <span className="icon icon-speedUp"></span>加速
-                  </SpeedUp>
-                  {this.state.iskeepOn ?
-                  <Stop className="btns" id="stop" onClick={this.stop}>
+                  </SpeedUp> : null}
+                 {   this.props.condition !== 'over' && this.props.condition !== 'stop' ?
+                    <Stop className="btns" id="stop" onClick={this.stop}>
                     <span className="icon icon-stop"></span>停止
-                  </Stop> :
-                  <KeepOn className="btns" id="keepOn" onClick={this.keepOn}>
+                    </Stop> : null}
+                  { this.props.condition !== 'over' && this.props.condition === 'stop' ? 
+                    <KeepOn className="btns" id="keepOn" onClick={this.keepOn}>
                     <span className="icon icon-jixv"></span>继续
-                  </KeepOn> }
-                  <button className="btns" onClick={this.skip}>
+                  </KeepOn> : null} 
+                  { this.props.condition !== 'over' ?
+                   <button className="btns" onClick={this.skip}>
                     <span className="icon icon-skip"></span>跳过
-                  </button>
-                 <button className="btns" onClick={this.again}>
-                    <span className="icon icon-skip"></span>重来
-                 </button>
+                  </button> : null }
+                    <button className="btns" onClick={this.again}>
+                        <span className="icon icon-skip"></span>重来
+                    </button>
               </ControlCode>
           )
       }
@@ -58,11 +60,9 @@ export default class Control extends Component {
       }
       stop() {
           this.props.onStop();
-          this.setState({iskeepOn: false})
       }
       keepOn() {
           this.props.onKeepOn();
-           this.setState({iskeepOn: true})
       }
       skip() {
           this.props.onSkip();
