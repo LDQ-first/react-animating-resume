@@ -62,7 +62,7 @@ class App extends Component {
         controlCodeText: '显示代码',
     };
      this.asideArr = [
-          { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
+          { tag: 'PDF下载', link: './刘德铨-应聘前端开发-2017.pdf'},
           { tag: '源码', link: 'https://github.com/LDQ-first/react-animating-resume-1'},
           { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
        ];
@@ -193,11 +193,11 @@ html {
 }
 .resumeEditor pre {
   color: #222;
-  padding: 0.2em 1em;
+  padding: 0 1em;
 }
 .resumeEditor  p {
   font-size: 18px;
-  padding: 0.2em 1em;
+  padding: 0 1em;
 }
 .resumeEditor img { width: 170px; }
 .resumeEditor .icon {
@@ -221,10 +221,10 @@ html {
 }
 .resumeEditor ul,.resumeEditor ol{
   list-style: none;
-  padding: 0.2em 1em;
+  padding: 0 1em;
 }
 .resumeEditor ul li,.resumeEditor ol li{
-  padding: 0.2em 1em;
+  padding: 0 1em;
 }
 .resumeEditor ol {
   counter-reset: section;
@@ -235,7 +235,7 @@ html {
   margin-right: .5em;
 }
 .resumeEditor blockquote {
-  margin: 1em; padding: .5em;
+  margin: 0 1em; padding: 0 .5em;
   background: #FFBD8D;
 }
 
@@ -293,7 +293,8 @@ progress::-webkit-progress-value  { background: #0064B4; }
 ];
       this.fullMarkdown =`
 <i class="icon-border"><i class="icon icon-geren" id="icon"></i></i>
-## 刘德铨
+刘德铨
+---
 在校大三学生，正在学习前端, 对前端有强烈的兴趣  
 
 <i class="icon-border"><i class="icon icon-skill" id="icon"></i></i>
