@@ -8,8 +8,16 @@ body {
    min-width: 375px;
 }
 
+pre {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif,
+    "Microsoft YaHei", "微软雅黑","MicrosoftJhengHei","华文细黑",STHeiti,MingLiu;
+}
 .clearfix::after {
     content: '';
     display: block;
     clear: both;
+}
+
+a {
+    text-decoration: none;
 }

@@ -41,11 +41,11 @@ class App extends Component {
     };
     this.timer = '';
     this.interval = 10;
-    /*this.asideArr = [
+    this.asideArr = [
         { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
         { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
         { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
-    ];*/
+    ];
       this.fullStyle = [ ` /*
 * Inspired by http://strml.net/
 * 大家好，我是刘德铨 
@@ -143,7 +143,11 @@ html {
   background: white;  color: #222;
   overflow: auto;
 }
-#icon { font-size: 20px; }
+.resumeEditor p, .resumeEditor ul, .resumeEditor ol {
+    font-weight: bold;
+    overflow-x: auto;
+}
+#icon { font-size: 30px; }
 
 
 
@@ -176,19 +180,24 @@ html {
 }
 .resumeEditor img { width: 170px; }
 .resumeEditor .icon {
-   width: 1em; height: 1em;
+   display: inline-block;
+   width: 20px; height: 20px;
    margin-right: 0.4em;
    vertical-align: -0.15em;
    fill: currentColor;
    overflow: hidden;
 }
 .resumeEditor a {
+  display: inline-block;
   margin: 0 5px;
   color: #108ee9; background: transparent;
   text-decoration: none;
   outline: none;
   cursor: pointer;
   transition: color .3s ease;
+}
+.resumeEditor a.github {
+  height: 1em;
 }
 .resumeEditor ul,.resumeEditor ol{
   list-style: none;
@@ -209,6 +218,8 @@ html {
   margin: 1em; padding: .5em;
   background: #FFBD8D;
 }
+
+
 
 /*
 好了，代码就展示到这里，接下来重点是优化简历了
@@ -253,91 +264,81 @@ progress::-webkit-progress-value  { background: #0064B4; }
 .resumeEditor .icon-github { color: #000 }
 .resumeEditor .icon { box-sizing: content-box; }
 .resumeEditor .icon-border {
-   display: block; height: calc(1.5em + 7px); border-bottom: 2px solid #CCC;
+   display: block; height: calc(1.5em + 6px); border-bottom: 2px solid #CCC;
 }
 .resumeEditor .icon-border .icon {
-   width: 5em; height: 1.5em; color: #2AA8E9;
+   width: 4em; height: 1em; color: #2AA8E9;
    border-bottom: 4px solid #2AA8E9;
+   text-align: center;
 }
 .resumeEditor p{ padding: 0.2em 0; }
 .resumeEditor p:not(:nth-of-type(1)) { margin-top: 0.5em; }
         `
 ];
       this.fullMarkdown =`
-<span class="icon-border">
-  <span class="icon icon-geren"></span>
-</span>
+<i class="icon-border"><i class="icon icon-geren" id="icon"></i></i>
 刘德铨
 ---
-在校大三学生，正在学习前端, 对前端有强烈的兴趣
+在校大三学生，正在学习前端, 对前端有强烈的兴趣  
 
-<span class="icon-border">
-  <span class="icon icon-skill"></span>
-</span>
+<i class="icon-border"><i class="icon icon-skill" id="icon"></i></i>
 技能
 ---
-<pre><span class="icon icon-html5"></span>HTML5       熟悉  <progress value="60" max="100"></progress>
-<span class="icon icon-css3"></span>CSS3       熟悉  <progress value="60" max="100"></progress>
+<pre><i class="icon icon-html5"></i>HTML5       熟悉  <progress value="60" max="100"></progress>
+<i class="icon icon-css3"></i>CSS3        熟悉  <progress value="60" max="100"></progress>
 <i class="icon icon-sass"></i>SCSS        熟悉  <progress value="60" max="100"></progress>
 <i class="icon icon-js"></i>JavaScript  熟悉  <progress value="50" max="100"></progress>
 <i class="icon icon-jquery"></i>jQuery      熟悉  <progress value="70" max="100"></progress>
-<i class="icon-vue"><span class="path1"></span><span class="path2"></span></i> Vue         熟悉  <progress value="40" max="100"></progress>
+<i class="icon icon-vue"><i class="path1"></i><i class="path2"></i></i> Vue        熟悉  <progress value="40" max="100"></progress>
 <img src="./static/media/webpack.dcba9539.png" class="icon webpack">Webpack     了解  <progress value="35" max="100"></progress>  
 </pre>
 
-<span class="icon-border">
-  <i class="icon icon-mubiao"></i>
-</span>
+<i class="icon-border"><i class="icon icon-mubiao" id="icon"></i></i>
 求职意向
 ---
 前端工程师
 
-<span class="icon-border">
-  <i class="icon icon-project"></i>
-</span>
+<i class="icon-border"><i class="icon icon-project" id="icon"></i></i>
 项目
 ---
-1. [Vue版CNode](https://ldq-first.github.io/vue-CNode-1/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode-1" >
+1. [Vue版CNode](https://ldq-first.github.io/vue-CNode-1/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode-1" class="github">
   <i class="icon icon-github"></i>
 </a>
-2. [Vue版在线简历编辑器](https://ldq-first.github.io/vue-cv-1/dist/#/)<a href="https://github.com/LDQ-first/vue-cv-1" >
+2. [Vue版在线简历编辑器](https://ldq-first.github.io/vue-cv-1/dist/#/)<a href="https://github.com/LDQ-first/vue-cv-1" class="github">
   <i class="icon icon-github"></i>
 </a>
-3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume-1/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume-1" >
+3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume-1/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume-1" class="github">
   <i class="icon icon-github"></i>
 </a>
 
-<span class="icon-border">
-  <i class="icon icon-contact"></i>
-</span>
+<i class="icon-border"><i class="icon icon-contact" id="icon"></i></i>
 联系方式
 ---
 * <i class="icon icon-mobile"></i>手机：18826136763
 * <i class="icon icon-email"></i>邮箱：2320975287@qq.com
-* <span class="icon-weChat"><span class="path1"></span><span class="path2"></span></span> 微信：18826136763
+* <i class="icon-weChat"><i class="path1"></i><i class="path2"></i></i> 微信：18826136763
 
-<span class="contact">![weChat](./static/media/weChat.2c1ab8cf.png)</span>
+<i class="contact">![weChat](./static/media/weChat.2c1ab8cf.png)</i>
 *  <i class="icon icon-QQ"></i>qq: 2320975287
 
-<span class="contact">![QQ](./static/media/qq.370b3bc6.jpg)</span>
+<i class="contact">![QQ](./static/media/qq.370b3bc6.jpg)</i>
 
 
-<span class="icon-border">
-  <i class="icon icon-jiaoyu"></i>
-</span>
+<i class="icon-border"><i class="icon icon-jiaoyu" id="icon"></i></i>
 教育背景
 ---
 - 就读于广东工业大学 计算机科学与技术 本科 
 - 英语四级
 
-<span class="icon-border">
-  <i class="icon icon-myself"></i>
-</span>
+<i class="icon-border"><i class="icon icon-myself" id="icon"></i></i>
 自我评价和期望
 ---
-> 热衷于学习新技术，做事认真，对前端有浓厚的兴趣。   
-> 我希望能够加入一个以技术驱动为导向，技术氛围浓厚，有发展空间的互联网公司 :)  
-> 希望借此机会为贵司贡献自身所长
+> 
+热衷于学习新技术，做事认真，对前端有浓厚的兴趣。
+我希望能够加入一个以技术驱动为导向，
+技术氛围浓厚，有发展空间的互联网公司 :)
+希望借此机会为贵司贡献自身所长
+
 
   `;
   this.controlCodeEve = this.controlCodeEve.bind(this);
