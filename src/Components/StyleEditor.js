@@ -13,8 +13,6 @@ const StyleEditors = styled.div`
     }
 `
 
-
-
 class StyleEditor extends Component {
       constructor (props) {
           super(props)

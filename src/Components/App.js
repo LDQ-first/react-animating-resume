@@ -93,6 +93,7 @@ html {
   width: 45vw;  height: 90vh;
   background: #303030;
 }
+.styleEditor pre { padding: 0.5em; }
 
 /* 代码高亮
   作为程序员，怎么能忍受代码都是一种颜色呢
@@ -337,6 +338,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 * <i class="icon-weChat"><i class="path1"></i><i class="path2"></i></i> 微信：18826136763
 
 <i class="contact">![weChat](./static/media/weChat.2c1ab8cf.png)</i>
+<i class="contact">![weChat](./public/img/weChat.png)</i>
 *  <i class="icon icon-QQ"></i>qq: 2320975287
 
 <i class="contact">![QQ](./static/media/qq.370b3bc6.jpg)</i>
