@@ -37,7 +37,7 @@ export default class Control extends Component {
                   {this.props.interval !== 0 && this.props.condition !== 'over' ? <SpeedUp className="btns speedUp" id="speedUp" onClick={this.speedUp} >
                     <span className="icon icon-speedUp"></span>加速
                   </SpeedUp> : null}
-                 {   this.props.condition !== 'over' && this.props.condition !== 'stop' ?
+                  { this.props.condition !== 'over' && this.props.condition !== 'stop' ?
                     <Stop className="btns" id="stop" onClick={this.stop}>
                     <span className="icon icon-stop"></span>停止
                     </Stop> : null}
@@ -48,7 +48,7 @@ export default class Control extends Component {
                   { this.props.condition !== 'over' ?
                    <button className="btns" onClick={this.skip}>
                     <span className="icon icon-skip"></span>跳过
-                  </button> : null }
+                   </button> : null }
                     <button className="btns" onClick={this.again}>
                         <span className="icon icon-skip"></span>重来
                     </button>

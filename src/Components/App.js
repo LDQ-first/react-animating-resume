@@ -68,7 +68,7 @@ class App extends Component {
           { tag: 'Vue版', link: 'https://ldq-first.github.io/vue-animating-resume-1/dist/'},
        ];
     this.timer = '';
-    this.interval = 10;
+    this.interval = 40;
       this.fullStyle = [ ` /*
 * Inspired by http://strml.net/
 * 大家好，我是刘德铨 
@@ -198,7 +198,7 @@ html {
 }
 .resumeEditor  p {
   font-size: 18px;
-  padding: 0 1em;
+  padding: 0 2em;
 }
 .resumeEditor img { width: 170px; }
 .resumeEditor .icon {
@@ -235,6 +235,7 @@ html {
   content: counters(section, ".") " ";  
   margin-right: .5em;
 }
+.resumeEditor .contact { padding: 0 2em; }
 .resumeEditor blockquote {
   margin: 0 1em; padding: 0 .5em;
   background: #FFBD8D;
@@ -337,7 +338,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 ---
 * <i class="icon icon-mobile"></i>手机：18826136763
 * <i class="icon icon-email"></i>邮箱：2320975287@qq.com
-* <i class="icon-weChat"><i class="path1"></i><i class="path2"></i></i> 微信：18826136763
+* <i class="icon-weChat"><i class="path1"></i><i class="path2"></i></i>  微信：18826136763
 
 <i class="contact">![weChat](./img/weChat.png)</i>
 *  <i class="icon icon-QQ"></i>qq: 2320975287
@@ -494,7 +495,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
     const controlCodeText = this.state.controlCodeText  === '显示代码' ? '隐藏代码' : '显示代码';
     this.setState({ controlCodeText: controlCodeText});
   }
- /* pureResume(tag) {
+  /*pureResume(tag) {
         if(tag === 'PDF下载') {
            this.skip();
            this.setState({controlCode: false});

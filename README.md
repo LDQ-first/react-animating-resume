@@ -2,7 +2,7 @@
 
 > A React.js 版的动态响应式简历
 
-[预览地址](https://ldq-first.github.io/react-animating-resume-1/build/)
+**[预览地址](https://ldq-first.github.io/react-animating-resume-1/build/)**
 
 ## 技术栈
 - React  前端框架
@@ -18,3 +18,18 @@
 ## 总结
 > 利用 Async/Await Promise 实现按步骤绘制动态简历  
 > 实现了加速、播放、暂停、跳过、重来、下载PDF等功能
+
+## 本地使用
+- 本地下载、编译、运行，可以参考以下命令：
+
+```
+git clone git@github.com:LDQ-first/react-animating-resume-1.git
+cd react-animating-resume-1/
+npm install 
+npm start 
+npm run build
+
+```
+
+就可以在 http://localhost:3000/ 上看到项目的展示效果啦
+
