@@ -62,7 +62,7 @@ class App extends Component {
         controlCodeText: '显示代码',
     };
      this.asideArr = [
-          { tag: 'PDF下载', link: './刘德铨-应聘前端开发-2017.pdf'},
+          { tag: 'PDF下载', link: './刘德铨-应聘前端开发-2017.pdf', title: '建议用chrome浏览器打开', download:"true"},
           { tag: '源码', link: 'https://github.com/LDQ-first/react-animating-resume-1'},
           { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
           { tag: 'Vue版', link: 'https://ldq-first.github.io/vue-animating-resume-1/dist/'},
@@ -130,7 +130,7 @@ html {
   border: none;  outline: none;
   margin-right: 0.5em;
   float: left;
-  font-size: .25rem;  color: #EEE;
+  font-size: 12px;  color: #EEE;
   width: 5em;  height: 3em;
   text-align: center;
   cursor: pointer;
@@ -494,22 +494,22 @@ progress::-webkit-progress-value  { background: #0064B4; }
     const controlCodeText = this.state.controlCodeText  === '显示代码' ? '隐藏代码' : '显示代码';
     this.setState({ controlCodeText: controlCodeText});
   }
-  pureResume(tag) {
-       if(tag === 'PDF下载') {
+  pureResume() {
         this.skip();
-        this.setState({showControl: false});
-        this.setState({controlCode: false});
-        this.setState({condition: 'pure'})
-        this._ResumeEditor.pureResume();
-      } 
+        const userAgent = navigator.userAgent; 
+        console.log(userAgent);
+        
+        
+       /* window.location.href=dlLink;*/
   }
    
   render() {
     let asideItem = this.asideArr.filter((item) => item).map( (item, index) => {
       return (
         <li key={index}>
-          <a href={item.link} target="_blank" rel="noopener noreferrer" 
-          onClick={() => {this.pureResume(item.tag)} }>{item.tag}</a>
+          { item.tag === 'PDF下载' ?  <a href={item.link} target="_blank" rel="noopener noreferrer" download
+          onClick={() => {this.pureResume()}} title={item.title ? item.title: null}>{item.tag}</a> :
+           <a href={item.link} target="_blank" rel="noopener noreferrer" title={item.title ? item.title: null}>{item.tag}</a>  }
         </li>
       )
     })
