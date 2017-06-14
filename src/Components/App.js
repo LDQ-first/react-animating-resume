@@ -25,6 +25,29 @@ const ControlCode = styled.button`
     top: 0;
     left: 0;
 `
+const AsideOpt = styled.aside`
+    position: fixed;
+    right: 0;
+    top: 30%;
+    z-index: 10;
+    ul li {
+      list-style: none;
+      background: #00A68F;
+      margin-bottom: 10px;
+      border-radius: 10px 0 0 10px;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),
+                  0 3px 1px -2px rgba(0,0,0,.2),
+                  0 1px 5px 0 rgba(0,0,0,.12);
+    }
+    a {
+      display: inline-block;
+      width: 80px;
+      height: 38px;
+      line-height: 38px;
+      padding-left: 10px;
+      color: #FFF;
+  }
+`
 
 class App extends Component {
   constructor(props) {
@@ -37,15 +60,20 @@ class App extends Component {
         condition: 'keepOn',
         optimizeResume : false,
         controlCode: false,
-        controlCodeText: '显示代码'
+        controlCodeText: '显示代码',
+       /* asideArr : [
+          { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
+          { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
+          { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
+       ],*/
     };
+     this.asideArr = [
+          { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
+          { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
+          { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
+       ],
     this.timer = '';
     this.interval = 10;
-    this.asideArr = [
-        { tag: 'PDF下载', link: './static/刘德铨-应聘前端开发-2017.pdf'},
-        { tag: '源码', link: 'https://github.com/LDQ-first/vue-animating-resume-1'},
-        { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
-    ];
       this.fullStyle = [ ` /*
 * Inspired by http://strml.net/
 * 大家好，我是刘德铨 
@@ -348,8 +376,9 @@ progress::-webkit-progress-value  { background: #0064B4; }
   this.keepOn = this.keepOn.bind(this);
   this.skip = this.skip.bind(this);
   this.again = this.again.bind(this);
+  this.pureResume = this.pureResume.bind(this);
 
-  
+   
   }
   speedUp() {
       this.setState({condition: 'speedUp'});
@@ -473,13 +502,36 @@ progress::-webkit-progress-value  { background: #0064B4; }
     const controlCodeText = this.state.controlCodeText  === '显示代码' ? '隐藏代码' : '显示代码';
     this.setState({ controlCodeText: controlCodeText});
   }
+  pureResume(tag) {
+       if(tag === 'PDF下载') {
+        this.skip();
+        /*this.setState({showControl: true});
+        this.setState({controlCode: true});
+        this.setState({condition: 'pure'})
+        this._ResumeEditor.pureResume();*/
+      } 
+  }
+   
   render() {
+    let asideItem = this.asideArr.filter((item) => item).map( (item, index) => {
+      return (
+        <li key={index}>
+          <a href={item.link} target="_blank" onClick={() => {this.pureResume(item.tag)} }>{item.tag}</a>
+        </li>
+      )
+    })
     return (
       <AppDiv>
         { this.state.optimizeResume ? <OptimizeResume>简历快速优化中……</OptimizeResume> : null}
         { this.state.controlCode ? <ControlCode
           onClick={this.controlCodeEve} className="btns" 
           ref={ControlCode => this._ControlCode = ControlCode}>{this.state.controlCodeText}</ControlCode> : null}
+        { this.state.condition === 'over' ? 
+        <AsideOpt>
+          <ul>
+           {asideItem}
+          </ul>
+        </AsideOpt> : null}
         <StyleEditor ref={ StyleEditor => this._StyleEditor = StyleEditor } code={this.state.currentStyle} />
         <ResumeEditor ref={ ResumeEditor => this._ResumeEditor = ResumeEditor} content={this.state.currentMarkdown} enableHtml={this.state.enableHtml}/>
         {this.state.showControl ? 

@@ -27,7 +27,8 @@ class StyleEditor extends Component {
          this.setState({isShowCode: isShowCode})
       }
       componentDidUpdate() {
-          ReactDOM.findDOMNode(this).scrollTop = 10000;
+         /* ReactDOM.findDOMNode(this).scrollTop = 10000;*/
+          /*StyleEditors.scrollTop = 10000;*/
       }
       render() {
           return (

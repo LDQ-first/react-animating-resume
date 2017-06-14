@@ -14,12 +14,16 @@ class ResumeEditor extends Component {
               __html: this.props.enableHtml ? marked(this.props.content) : this.props.content
           }
       }
+      pureResume() {
+
+      }
       componentDidUpdate() {
-          ReactDOM.findDOMNode(this).scrollTop = 10000;
+          /*ReactDOM.findDOMNode(this).scrollTop = 10000;*/
+         /* this._resumeEditor.scrollTop = 10000;*/
       }
       render() {
           return (
-              <div className="resumeEditor">
+              <div className="resumeEditor" ref={resumeEditor => this._resumeEditor = resumeEditor}>
                   <pre dangerouslySetInnerHTML= {this.resume()}></pre>
               </div>
           )
