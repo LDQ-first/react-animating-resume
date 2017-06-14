@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?s3o0kl');
-  src:  url('fonts/icomoon.eot?s3o0kl#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?s3o0kl') format('truetype'),
-    url('fonts/icomoon.woff?s3o0kl') format('woff'),
-    url('fonts/icomoon.svg?s3o0kl#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?7m9653');
+  src:  url('fonts/icomoon.eot?7m9653#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?7m9653') format('truetype'),
+    url('fonts/icomoon.woff?7m9653') format('woff'),
+    url('fonts/icomoon.svg?7m9653#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-react:before {
+  content: "\e91a";
+  color: #1296db;
+}
 .icon-webpack .path1:before {
   content: "\e918";
   color: rgb(17, 118, 194);

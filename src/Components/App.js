@@ -304,6 +304,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
 <i class="icon icon-js"></i>JavaScript    熟悉  <progress value="50" max="100"></progress>
 <i class="icon icon-jquery"></i>jQuery          熟悉  <progress value="70" max="100"></progress>
 <i class="icon icon-vue"><i class="path1"></i><i class="path2"></i></i> Vue             熟悉  <progress value="40" max="100"></progress>
+<i class="icon icon-react"></i>React           了解  <progress value="20" max="100"></progress>
 <i class="icon icon-webpack"><i class="path1"></i><i class="path2"></i></i>Webpack     了解  <progress value="35" max="100"></progress>  
 </pre>
 
@@ -322,6 +323,9 @@ progress::-webkit-progress-value  { background: #0064B4; }
   <i class="icon icon-github"></i>
 </a>
 3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume-1/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume-1" class="github">
+  <i class="icon icon-github"></i>
+</a>
+4. [React版动态简历](https://ldq-first.github.io/react-animating-resume-1/build)<a href="https://github.com/LDQ-first/react-animating-resume-1" class="github">
   <i class="icon icon-github"></i>
 </a>
 
