@@ -62,7 +62,7 @@ class App extends Component {
         controlCodeText: '显示代码',
     };
      this.asideArr = [
-          { tag: 'PDF下载', link: 'https://github.com/LDQ-first/react-animating-resume-1/public/刘德铨-应聘前端开发-2017.pdf', title: '建议用chrome浏览器打开', download:"true"},
+          { tag: 'PDF下载', link: 'https://ldq-first.github.io/react-animating-resume-1/build/刘德铨-应聘前端开发-2017.pdf', title: '建议用chrome浏览器打开', download:"true"},
           { tag: '源码', link: 'https://github.com/LDQ-first/react-animating-resume-1'},
           { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
           { tag: 'Vue版', link: 'https://ldq-first.github.io/vue-animating-resume-1/dist/'},
