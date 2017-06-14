@@ -510,7 +510,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
         <li key={index}>
           { navigator.userAgent.indexOf("Firefox") > -1 && item.tag === 'PDF下载' ?  <a href={item.link} target="_blank" rel="noopener noreferrer" download
            title={item.title ? item.title: null} >{item.tag}</a> :
-           <a href={item.link} target="_blank" rel="noreferrer" title={item.title ? item.title: null} >{item.tag}</a>  }
+           <a href={item.link} target="new" title={item.title ? item.title: null} >{item.tag}</a>  }
         { /* onClick={() => {this.pureResume(item.tag)}}*/ }
         </li>
       )
