@@ -65,13 +65,14 @@ class App extends Component {
           { tag: 'PDF下载', link: './刘德铨-应聘前端开发-2017.pdf'},
           { tag: '源码', link: 'https://github.com/LDQ-first/react-animating-resume-1'},
           { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
+          { tag: 'Vue版', link: 'https://ldq-first.github.io/vue-animating-resume-1/dist/'},
        ];
     this.timer = '';
     this.interval = 10;
       this.fullStyle = [ ` /*
 * Inspired by http://strml.net/
 * 大家好，我是刘德铨 
-* 这是我的一份动态简历！
+* 这是我的一份React版动态简历！
 */
 
 /* 首先给所有元素加上过渡效果 */
