@@ -508,7 +508,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
     let asideItem = this.asideArr.filter((item) => item).map( (item, index) => {
       return (
         <li key={index}>
-          { navigator.userAgent.indexOf("Firefox") > -1 ?  <a href={item.link} target="_blank" rel="noopener noreferrer" download
+          { navigator.userAgent.indexOf("Firefox") > -1 && item.tag === 'PDF下载' ?  <a href={item.link} target="_blank" rel="noopener noreferrer" download
            title={item.title ? item.title: null} >{item.tag}</a> :
            <a href={item.link} target="_blank" rel="noopener noreferrer" title={item.title ? item.title: null} >{item.tag}</a>  }
         { /* onClick={() => {this.pureResume(item.tag)}}*/ }
