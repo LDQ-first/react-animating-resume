@@ -495,7 +495,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
     const controlCodeText = this.state.controlCodeText  === '显示代码' ? '隐藏代码' : '显示代码';
     this.setState({ controlCodeText: controlCodeText});
   }
-  /*pureResume(tag) {
+  pureResume(tag) {
         if(tag === 'PDF下载') {
            this.skip();
            this.setState({controlCode: false});
@@ -503,14 +503,14 @@ progress::-webkit-progress-value  { background: #0064B4; }
            this.setState({condition: 'pure'});
            this._ResumeEditor.pureResume();
         }
-  }*/
+  }
   render() {
     let asideItem = this.asideArr.filter((item) => item).map( (item, index) => {
       return (
         <li key={index}>
           { navigator.userAgent.indexOf("Firefox") > -1 && item.tag === 'PDF下载' ?  <a href={item.link} target="_blank" rel="noopener noreferrer" download
            title={item.title ? item.title: null} >{item.tag}</a> :
-           <a href={item.link} target="_blank" rel="noopener noreferrer" title={item.title ? item.title: null} >{item.tag}</a>  }
+           <a href={item.link} target="_blank" rel="noopener noreferrer" title={item.title ? item.title: null} onClick={() => {this.pureResume(item.tag)}}>{item.tag}</a>  }
         { /* onClick={() => {this.pureResume(item.tag)}}*/ }
         </li>
       )
