@@ -337,10 +337,10 @@ progress::-webkit-progress-value  { background: #0064B4; }
 * <i class="icon icon-email"></i>邮箱：2320975287@qq.com
 * <i class="icon-weChat"><i class="path1"></i><i class="path2"></i></i> 微信：18826136763
 
-<i class="contact">![weChat](./public/img/weChat.png)</i>
+<i class="contact">![weChat](./img/weChat.png)</i>
 *  <i class="icon icon-QQ"></i>qq: 2320975287
 
-<i class="contact">![QQ](./public/img/qq.jpg)</i>
+<i class="contact">![QQ](./img/qq.jpg)</i>
 
 <i class="icon-border"><i class="icon icon-jiaoyu" id="icon"></i></i>
 教育背景
