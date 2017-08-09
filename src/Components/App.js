@@ -320,16 +320,16 @@ progress::-webkit-progress-value  { background: #0064B4; }
 <i class="icon-border"><i class="icon icon-project" id="icon"></i></i>
 项目
 ---
-1. [Vue版CNode](https://ldq-first.github.io/vue-CNode-1/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode-1" class="github">
+1. [Vue版CNode](https://ldq-first.github.io/vue-CNode/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode" class="github">
   <i class="icon icon-github"></i>
 </a>
 2. [Vue版在线简历编辑器](https://ldq-first.github.io/vue-cv-1/dist/#/)<a href="https://github.com/LDQ-first/vue-cv-1" class="github">
   <i class="icon icon-github"></i>
 </a>
-3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume-1/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume-1" class="github">
+3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume" class="github">
   <i class="icon icon-github"></i>
 </a>
-4. [React版动态简历](https://ldq-first.github.io/react-animating-resume-1/build/)<a href="https://github.com/LDQ-first/react-animating-resume-1" class="github">
+4. [React版动态简历](https://ldq-first.github.io/react-animating-resume/build/)<a href="https://github.com/LDQ-first/react-animating-resume" class="github">
   <i class="icon icon-github"></i>
 </a>
 
@@ -369,7 +369,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
   this.keepOn = this.keepOn.bind(this);
   this.skip = this.skip.bind(this);
   this.again = this.again.bind(this);
- /* this.pureResume = this.pureResume.bind(this);*/
+  this.pureResume = this.pureResume.bind(this);
 
    
   }
@@ -495,7 +495,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
     const controlCodeText = this.state.controlCodeText  === '显示代码' ? '隐藏代码' : '显示代码';
     this.setState({ controlCodeText: controlCodeText});
   }
-  /*pureResume(tag) {
+  pureResume(tag) {
         if(tag === 'PDF下载') {
            this.skip();
            this.setState({controlCode: false});
@@ -503,7 +503,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
            this.setState({condition: 'pure'});
            this._ResumeEditor.pureResume();
         }
-  }*/
+  }
   render() {
     let asideItem = this.asideArr.filter((item) => item).map( (item, index) => {
       return (
