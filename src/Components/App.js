@@ -63,9 +63,9 @@ class App extends Component {
     };
      this.asideArr = [
           { tag: 'PDF下载', link: './刘德铨-应聘前端开发-2017.pdf', title: '建议用chrome浏览器打开'},
-          { tag: '源码', link: 'https://github.com/LDQ-first/react-animating-resume-1'},
+          { tag: '源码', link: 'https://github.com/LDQ-first/react-animating-resume'},
           { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
-          { tag: 'Vue版', link: 'https://ldq-first.github.io/vue-animating-resume-1/dist/'},
+          { tag: 'Vue版', link: 'https://ldq-first.github.io/vue-animating-resume/dist/'},
        ];
     this.timer = '';
     this.interval = 40;
