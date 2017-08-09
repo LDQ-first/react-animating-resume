@@ -1,8 +1,8 @@
-# react-animating-resume-1
+# react-animating-resume
 
 > A React.js 版的动态响应式简历
 
-**[预览地址](https://ldq-first.github.io/react-animating-resume-1/build/)**
+**[预览地址](https://ldq-first.github.io/react-animating-resume/build/)**
 
 ## 技术栈
 - React  前端框架
@@ -23,7 +23,7 @@
 - 本地下载、编译、运行，可以参考以下命令：
 
 ```
-git clone git@github.com:LDQ-first/react-animating-resume-1.git
+git clone git@github.com:LDQ-first/react-animating-resume.git
 cd react-animating-resume-1/
 npm install 
 npm start 
