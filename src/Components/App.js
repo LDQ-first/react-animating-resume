@@ -323,13 +323,10 @@ progress::-webkit-progress-value  { background: #0064B4; }
 1. [Vue版CNode](https://ldq-first.github.io/vue-CNode/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode" class="github">
   <i class="icon icon-github"></i>
 </a>
-2. [Vue版在线简历编辑器](https://ldq-first.github.io/vue-cv-1/dist/#/)<a href="https://github.com/LDQ-first/vue-cv-1" class="github">
+2. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume" class="github">
   <i class="icon icon-github"></i>
 </a>
-3. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume" class="github">
-  <i class="icon icon-github"></i>
-</a>
-4. [React版动态简历](https://ldq-first.github.io/react-animating-resume/build/)<a href="https://github.com/LDQ-first/react-animating-resume" class="github">
+3. [React版动态简历](https://ldq-first.github.io/react-animating-resume/build/)<a href="https://github.com/LDQ-first/react-animating-resume" class="github">
   <i class="icon icon-github"></i>
 </a>
 
@@ -508,7 +505,7 @@ progress::-webkit-progress-value  { background: #0064B4; }
     let asideItem = this.asideArr.filter((item) => item).map( (item, index) => {
       return (
         <li key={index}>
-          {  item.tag === 'PDF下载' ?  <a href={item.link} target="_blank" rel="noopener noreferrer" download
+          {  item.tag === 'PDF下载' && navigator.userAgent.indexOf("Firefox") > -1 ?  <a href={item.link} target="_blank" rel="noopener noreferrer" /*download*/
            title={item.title ? item.title: null} >{item.tag}</a> :
            <a href={item.link} target="_blank" title={item.title ? item.title: null} >{item.tag}</a>  }
         { /* navigator.userAgent.indexOf("Firefox") > -1 && onClick={() => {this.pureResume(item.tag)}}*/ }
