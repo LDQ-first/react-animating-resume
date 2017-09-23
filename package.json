@@ -53,6 +53,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "bgit": "npm run build && npm run git",
+    "git": "git add . && git commit -m 'modify' && git push origin master",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
