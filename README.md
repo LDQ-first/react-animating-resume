@@ -2,7 +2,7 @@
 
 > A React.js 版的动态响应式简历
 
-**[预览地址](https://ldq-first.github.io/react-animating-resume/build/)**
+**[预览地址](http://ldqblog.me/react-animating-resume/build/)**
 
 ## 技术栈
 - React  前端框架

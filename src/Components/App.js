@@ -65,7 +65,7 @@ class App extends Component {
           { tag: 'PDF下载', link: './刘德铨-应聘前端开发-2017.pdf', title: '建议用chrome浏览器打开'},
           { tag: '源码', link: 'https://github.com/LDQ-first/react-animating-resume'},
           { tag: 'GitHub', link: 'https://github.com/LDQ-first'},
-          { tag: 'Vue版', link: 'https://ldq-first.github.io/vue-animating-resume/dist/'},
+          { tag: 'Vue版', link: 'http://ldqblog.me/vue-animating-resume/dist/'},
        ];
     this.timer = '';
     this.interval = 40;
@@ -320,13 +320,13 @@ progress::-webkit-progress-value  { background: #0064B4; }
 <i class="icon-border"><i class="icon icon-project" id="icon"></i></i>
 项目
 ---
-1. [Vue版CNode](https://ldq-first.github.io/vue-CNode/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode" class="github">
+1. [Vue版CNode](http://ldqblog.me/vue-CNode/dist/#/)<a href="https://github.com/LDQ-first/vue-CNode" class="github">
   <i class="icon icon-github"></i>
 </a>
-2. [Vue版动态简历](https://ldq-first.github.io/vue-animating-resume/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume" class="github">
+2. [Vue版动态简历](http://ldqblog.me/vue-animating-resume/dist/)<a href="https://github.com/LDQ-first/vue-animating-resume" class="github">
   <i class="icon icon-github"></i>
 </a>
-3. [React版动态简历](https://ldq-first.github.io/react-animating-resume/build/)<a href="https://github.com/LDQ-first/react-animating-resume" class="github">
+3. [React版动态简历](http://ldqblog.me/react-animating-resume/build/)<a href="https://github.com/LDQ-first/react-animating-resume" class="github">
   <i class="icon icon-github"></i>
 </a>
 
